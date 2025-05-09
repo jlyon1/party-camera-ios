@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF1B0E6F2DCE1C3000E19C76 /* partycamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E6E2DCE1C3000E19C76 /* partycamApp.swift */; };
+		BF1B0E712DCE1C3000E19C76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E702DCE1C3000E19C76 /* ContentView.swift */; };
+		BF1B0E732DCE1C3100E19C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF1B0E722DCE1C3100E19C76 /* Assets.xcassets */; };
+		BF1B0E762DCE1C3100E19C76 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF1B0E752DCE1C3100E19C76 /* Preview Assets.xcassets */; };
+		BF1B0E802DCE1C3100E19C76 /* partycamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E7F2DCE1C3100E19C76 /* partycamTests.swift */; };
+		BF1B0E8A2DCE1C3100E19C76 /* partycamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */; };
+		BF1B0E8C2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF1B0E7C2DCE1C3100E19C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF1B0E632DCE1C3000E19C76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF1B0E6A2DCE1C3000E19C76;
+			remoteInfo = partycam;
+		};
+		BF1B0E862DCE1C3100E19C76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF1B0E632DCE1C3000E19C76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF1B0E6A2DCE1C3000E19C76;
+			remoteInfo = partycam;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF1B0E6B2DCE1C3000E19C76 /* partycam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = partycam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF1B0E6E2DCE1C3000E19C76 /* partycamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamApp.swift; sourceTree = "<group>"; };
+		BF1B0E702DCE1C3000E19C76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BF1B0E722DCE1C3100E19C76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF1B0E752DCE1C3100E19C76 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BF1B0E7B2DCE1C3100E19C76 /* partycamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = partycamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF1B0E7F2DCE1C3100E19C76 /* partycamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamTests.swift; sourceTree = "<group>"; };
+		BF1B0E852DCE1C3100E19C76 /* partycamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = partycamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamUITests.swift; sourceTree = "<group>"; };
+		BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF1B0E682DCE1C3000E19C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1B0E782DCE1C3100E19C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1B0E822DCE1C3100E19C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF1B0E622DCE1C3000E19C76 = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E6D2DCE1C3000E19C76 /* partycam */,
+				BF1B0E7E2DCE1C3100E19C76 /* partycamTests */,
+				BF1B0E882DCE1C3100E19C76 /* partycamUITests */,
+				BF1B0E6C2DCE1C3000E19C76 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF1B0E6C2DCE1C3000E19C76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E6B2DCE1C3000E19C76 /* partycam.app */,
+				BF1B0E7B2DCE1C3100E19C76 /* partycamTests.xctest */,
+				BF1B0E852DCE1C3100E19C76 /* partycamUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF1B0E6D2DCE1C3000E19C76 /* partycam */ = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E6E2DCE1C3000E19C76 /* partycamApp.swift */,
+				BF1B0E702DCE1C3000E19C76 /* ContentView.swift */,
+				BF1B0E722DCE1C3100E19C76 /* Assets.xcassets */,
+				BF1B0E742DCE1C3100E19C76 /* Preview Content */,
+			);
+			path = partycam;
+			sourceTree = "<group>";
+		};
+		BF1B0E742DCE1C3100E19C76 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E752DCE1C3100E19C76 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BF1B0E7E2DCE1C3100E19C76 /* partycamTests */ = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E7F2DCE1C3100E19C76 /* partycamTests.swift */,
+			);
+			path = partycamTests;
+			sourceTree = "<group>";
+		};
+		BF1B0E882DCE1C3100E19C76 /* partycamUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */,
+				BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */,
+			);
+			path = partycamUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF1B0E6A2DCE1C3000E19C76 /* partycam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF1B0E8F2DCE1C3100E19C76 /* Build configuration list for PBXNativeTarget "partycam" */;
+			buildPhases = (
+				BF1B0E672DCE1C3000E19C76 /* Sources */,
+				BF1B0E682DCE1C3000E19C76 /* Frameworks */,
+				BF1B0E692DCE1C3000E19C76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = partycam;
+			productName = partycam;
+			productReference = BF1B0E6B2DCE1C3000E19C76 /* partycam.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF1B0E7A2DCE1C3100E19C76 /* partycamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF1B0E922DCE1C3100E19C76 /* Build configuration list for PBXNativeTarget "partycamTests" */;
+			buildPhases = (
+				BF1B0E772DCE1C3100E19C76 /* Sources */,
+				BF1B0E782DCE1C3100E19C76 /* Frameworks */,
+				BF1B0E792DCE1C3100E19C76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF1B0E7D2DCE1C3100E19C76 /* PBXTargetDependency */,
+			);
+			name = partycamTests;
+			productName = partycamTests;
+			productReference = BF1B0E7B2DCE1C3100E19C76 /* partycamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BF1B0E842DCE1C3100E19C76 /* partycamUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF1B0E952DCE1C3100E19C76 /* Build configuration list for PBXNativeTarget "partycamUITests" */;
+			buildPhases = (
+				BF1B0E812DCE1C3100E19C76 /* Sources */,
+				BF1B0E822DCE1C3100E19C76 /* Frameworks */,
+				BF1B0E832DCE1C3100E19C76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF1B0E872DCE1C3100E19C76 /* PBXTargetDependency */,
+			);
+			name = partycamUITests;
+			productName = partycamUITests;
+			productReference = BF1B0E852DCE1C3100E19C76 /* partycamUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF1B0E632DCE1C3000E19C76 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					BF1B0E6A2DCE1C3000E19C76 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					BF1B0E7A2DCE1C3100E19C76 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = BF1B0E6A2DCE1C3000E19C76;
+					};
+					BF1B0E842DCE1C3100E19C76 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = BF1B0E6A2DCE1C3000E19C76;
+					};
+				};
+			};
+			buildConfigurationList = BF1B0E662DCE1C3000E19C76 /* Build configuration list for PBXProject "partycam" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF1B0E622DCE1C3000E19C76;
+			productRefGroup = BF1B0E6C2DCE1C3000E19C76 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF1B0E6A2DCE1C3000E19C76 /* partycam */,
+				BF1B0E7A2DCE1C3100E19C76 /* partycamTests */,
+				BF1B0E842DCE1C3100E19C76 /* partycamUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF1B0E692DCE1C3000E19C76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF1B0E762DCE1C3100E19C76 /* Preview Assets.xcassets in Resources */,
+				BF1B0E732DCE1C3100E19C76 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1B0E792DCE1C3100E19C76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1B0E832DCE1C3100E19C76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF1B0E672DCE1C3000E19C76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF1B0E712DCE1C3000E19C76 /* ContentView.swift in Sources */,
+				BF1B0E6F2DCE1C3000E19C76 /* partycamApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1B0E772DCE1C3100E19C76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF1B0E802DCE1C3100E19C76 /* partycamTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1B0E812DCE1C3100E19C76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF1B0E8C2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift in Sources */,
+				BF1B0E8A2DCE1C3100E19C76 /* partycamUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF1B0E7D2DCE1C3100E19C76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF1B0E6A2DCE1C3000E19C76 /* partycam */;
+			targetProxy = BF1B0E7C2DCE1C3100E19C76 /* PBXContainerItemProxy */;
+		};
+		BF1B0E872DCE1C3100E19C76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF1B0E6A2DCE1C3000E19C76 /* partycam */;
+			targetProxy = BF1B0E862DCE1C3100E19C76 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BF1B0E8D2DCE1C3100E19C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BF1B0E8E2DCE1C3100E19C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF1B0E902DCE1C3100E19C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"partycam/Preview Content\"";
+				DEVELOPMENT_TEAM = 667RT8NCY8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyonsoftworks.partycam;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF1B0E912DCE1C3100E19C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"partycam/Preview Content\"";
+				DEVELOPMENT_TEAM = 667RT8NCY8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyonsoftworks.partycam;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF1B0E932DCE1C3100E19C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 667RT8NCY8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyonsoftworks.partycamTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/partycam.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/partycam";
+			};
+			name = Debug;
+		};
+		BF1B0E942DCE1C3100E19C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 667RT8NCY8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyonsoftworks.partycamTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/partycam.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/partycam";
+			};
+			name = Release;
+		};
+		BF1B0E962DCE1C3100E19C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 667RT8NCY8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyonsoftworks.partycamUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = partycam;
+			};
+			name = Debug;
+		};
+		BF1B0E972DCE1C3100E19C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 667RT8NCY8;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyonsoftworks.partycamUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = partycam;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF1B0E662DCE1C3000E19C76 /* Build configuration list for PBXProject "partycam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF1B0E8D2DCE1C3100E19C76 /* Debug */,
+				BF1B0E8E2DCE1C3100E19C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF1B0E8F2DCE1C3100E19C76 /* Build configuration list for PBXNativeTarget "partycam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF1B0E902DCE1C3100E19C76 /* Debug */,
+				BF1B0E912DCE1C3100E19C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF1B0E922DCE1C3100E19C76 /* Build configuration list for PBXNativeTarget "partycamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF1B0E932DCE1C3100E19C76 /* Debug */,
+				BF1B0E942DCE1C3100E19C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF1B0E952DCE1C3100E19C76 /* Build configuration list for PBXNativeTarget "partycamUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF1B0E962DCE1C3100E19C76 /* Debug */,
+				BF1B0E972DCE1C3100E19C76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF1B0E632DCE1C3000E19C76 /* Project object */;
+}
