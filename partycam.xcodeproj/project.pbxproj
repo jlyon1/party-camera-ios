@@ -14,6 +14,9 @@
 		BF1B0E802DCE1C3100E19C76 /* partycamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E7F2DCE1C3100E19C76 /* partycamTests.swift */; };
 		BF1B0E8A2DCE1C3100E19C76 /* partycamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */; };
 		BF1B0E8C2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */; };
+		BF1B0E992DCE1CC100E19C76 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E982DCE1CC100E19C76 /* MainTabView.swift */; };
+		BF1B0E9C2DCE1D0100E19C76 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E9B2DCE1D0100E19C76 /* CameraView.swift */; };
+		BFA5B99F2DCE7E2100C4868C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B99E2DCE7E2100C4868C /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		BF1B0E852DCE1C3100E19C76 /* partycamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = partycamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamUITests.swift; sourceTree = "<group>"; };
 		BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BF1B0E982DCE1CC100E19C76 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BF1B0E9B2DCE1D0100E19C76 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		BFA5B99E2DCE7E2100C4868C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,8 @@
 		BF1B0E6D2DCE1C3000E19C76 /* partycam */ = {
 			isa = PBXGroup;
 			children = (
+				BF1B0E9A2DCE1CEC00E19C76 /* tabs */,
+				BF1B0E982DCE1CC100E19C76 /* MainTabView.swift */,
 				BF1B0E6E2DCE1C3000E19C76 /* partycamApp.swift */,
 				BF1B0E702DCE1C3000E19C76 /* ContentView.swift */,
 				BF1B0E722DCE1C3100E19C76 /* Assets.xcassets */,
@@ -125,6 +133,15 @@
 				BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */,
 			);
 			path = partycamUITests;
+			sourceTree = "<group>";
+		};
+		BF1B0E9A2DCE1CEC00E19C76 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				BF1B0E9B2DCE1D0100E19C76 /* CameraView.swift */,
+				BFA5B99E2DCE7E2100C4868C /* LoginView.swift */,
+			);
+			path = tabs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +276,9 @@
 			files = (
 				BF1B0E712DCE1C3000E19C76 /* ContentView.swift in Sources */,
 				BF1B0E6F2DCE1C3000E19C76 /* partycamApp.swift in Sources */,
+				BF1B0E992DCE1CC100E19C76 /* MainTabView.swift in Sources */,
+				BFA5B99F2DCE7E2100C4868C /* LoginView.swift in Sources */,
+				BF1B0E9C2DCE1D0100E19C76 /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +445,7 @@
 				DEVELOPMENT_TEAM = 667RT8NCY8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The app uses the device camera to capture photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -454,6 +475,7 @@
 				DEVELOPMENT_TEAM = 667RT8NCY8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "The app uses the device camera to capture photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

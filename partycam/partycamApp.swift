@@ -11,7 +11,16 @@ import SwiftUI
 struct partycamApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ContentView(text: "hi")
+                    .tabItem {
+                        Label("Journal", systemImage: "book")
+                    }
+                ContentView(text: "Settings")
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+            }
         }
     }
 }
