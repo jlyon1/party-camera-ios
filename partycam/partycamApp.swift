@@ -7,20 +7,21 @@
 
 import SwiftUI
 
+let backendUrl = "https://party-camera-iota.vercel.app";
+
 @main
 struct partycamApp: App {
+    @StateObject var session = SessionManager()
+    
     var body: some Scene {
         WindowGroup {
-            TabView {
-                ContentView(text: "hi")
-                    .tabItem {
-                        Label("Journal", systemImage: "book")
+            RootView()
+                .environmentObject(session)
+                .onAppear {
+                    session.checkSession { _ in
+                        // Optional: react to session check completion if needed
                     }
-                ContentView(text: "Settings")
-                    .tabItem {
-                        Label("Settings", systemImage: "gear")
-                    }
-            }
+                }
         }
     }
 }

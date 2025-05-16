@@ -14,9 +14,14 @@
 		BF1B0E802DCE1C3100E19C76 /* partycamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E7F2DCE1C3100E19C76 /* partycamTests.swift */; };
 		BF1B0E8A2DCE1C3100E19C76 /* partycamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */; };
 		BF1B0E8C2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */; };
-		BF1B0E992DCE1CC100E19C76 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E982DCE1CC100E19C76 /* MainTabView.swift */; };
-		BF1B0E9C2DCE1D0100E19C76 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B0E9B2DCE1D0100E19C76 /* CameraView.swift */; };
-		BFA5B99F2DCE7E2100C4868C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B99E2DCE7E2100C4868C /* LoginView.swift */; };
+		BFA5B9AD2DD7885600C4868C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9AC2DD7885600C4868C /* LoginView.swift */; };
+		BFA5B9AF2DD78A4E00C4868C /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */; };
+		BFA5B9B32DD78A9D00C4868C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */; };
+		BFA5B9B52DD791F500C4868C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B42DD791F500C4868C /* RootView.swift */; };
+		BFA5B9B72DD7D2C300C4868C /* BackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B62DD7D2C300C4868C /* BackendManager.swift */; };
+		BFA5B9BA2DD7D43700C4868C /* MockBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B92DD7D43700C4868C /* MockBackendManager.swift */; };
+		BFA5B9BC2DD7D74000C4868C /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9BB2DD7D74000C4868C /* Create.swift */; };
+		BFA5B9BE2DD7D86D00C4868C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9BD2DD7D86D00C4868C /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,9 +52,14 @@
 		BF1B0E852DCE1C3100E19C76 /* partycamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = partycamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF1B0E892DCE1C3100E19C76 /* partycamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamUITests.swift; sourceTree = "<group>"; };
 		BF1B0E8B2DCE1C3100E19C76 /* partycamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = partycamUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BF1B0E982DCE1CC100E19C76 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		BF1B0E9B2DCE1D0100E19C76 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		BFA5B99E2DCE7E2100C4868C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BFA5B9AC2DD7885600C4868C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
+		BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		BFA5B9B42DD791F500C4868C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		BFA5B9B62DD7D2C300C4868C /* BackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendManager.swift; sourceTree = "<group>"; };
+		BFA5B9B92DD7D43700C4868C /* MockBackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBackendManager.swift; sourceTree = "<group>"; };
+		BFA5B9BB2DD7D74000C4868C /* Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create.swift; sourceTree = "<group>"; };
+		BFA5B9BD2DD7D86D00C4868C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +110,8 @@
 		BF1B0E6D2DCE1C3000E19C76 /* partycam */ = {
 			isa = PBXGroup;
 			children = (
-				BF1B0E9A2DCE1CEC00E19C76 /* tabs */,
-				BF1B0E982DCE1CC100E19C76 /* MainTabView.swift */,
+				BFA5B9B02DD78A8900C4868C /* lib */,
+				BFA5B9A82DD7865A00C4868C /* views */,
 				BF1B0E6E2DCE1C3000E19C76 /* partycamApp.swift */,
 				BF1B0E702DCE1C3000E19C76 /* ContentView.swift */,
 				BF1B0E722DCE1C3100E19C76 /* Assets.xcassets */,
@@ -135,13 +145,50 @@
 			path = partycamUITests;
 			sourceTree = "<group>";
 		};
-		BF1B0E9A2DCE1CEC00E19C76 /* tabs */ = {
+		BFA5B9A82DD7865A00C4868C /* views */ = {
 			isa = PBXGroup;
 			children = (
-				BF1B0E9B2DCE1D0100E19C76 /* CameraView.swift */,
-				BFA5B99E2DCE7E2100C4868C /* LoginView.swift */,
+				BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */,
+				BFA5B9A92DD7866200C4868C /* login */,
+				BFA5B9B42DD791F500C4868C /* RootView.swift */,
+				BFA5B9BB2DD7D74000C4868C /* Create.swift */,
+				BFA5B9BD2DD7D86D00C4868C /* Settings.swift */,
 			);
-			path = tabs;
+			path = views;
+			sourceTree = "<group>";
+		};
+		BFA5B9A92DD7866200C4868C /* login */ = {
+			isa = PBXGroup;
+			children = (
+				BFA5B9AC2DD7885600C4868C /* LoginView.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		BFA5B9B02DD78A8900C4868C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				BFA5B9B82DD7D42A00C4868C /* backend */,
+				BFA5B9B12DD78A9000C4868C /* session */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		BFA5B9B12DD78A9000C4868C /* session */ = {
+			isa = PBXGroup;
+			children = (
+				BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */,
+			);
+			path = session;
+			sourceTree = "<group>";
+		};
+		BFA5B9B82DD7D42A00C4868C /* backend */ = {
+			isa = PBXGroup;
+			children = (
+				BFA5B9B62DD7D2C300C4868C /* BackendManager.swift */,
+				BFA5B9B92DD7D43700C4868C /* MockBackendManager.swift */,
+			);
+			path = backend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,11 +321,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA5B9BC2DD7D74000C4868C /* Create.swift in Sources */,
+				BFA5B9B52DD791F500C4868C /* RootView.swift in Sources */,
 				BF1B0E712DCE1C3000E19C76 /* ContentView.swift in Sources */,
+				BFA5B9AD2DD7885600C4868C /* LoginView.swift in Sources */,
+				BFA5B9BE2DD7D86D00C4868C /* Settings.swift in Sources */,
+				BFA5B9AF2DD78A4E00C4868C /* Gallery.swift in Sources */,
+				BFA5B9B72DD7D2C300C4868C /* BackendManager.swift in Sources */,
 				BF1B0E6F2DCE1C3000E19C76 /* partycamApp.swift in Sources */,
-				BF1B0E992DCE1CC100E19C76 /* MainTabView.swift in Sources */,
-				BFA5B99F2DCE7E2100C4868C /* LoginView.swift in Sources */,
-				BF1B0E9C2DCE1D0100E19C76 /* CameraView.swift in Sources */,
+				BFA5B9BA2DD7D43700C4868C /* MockBackendManager.swift in Sources */,
+				BFA5B9B32DD78A9D00C4868C /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
