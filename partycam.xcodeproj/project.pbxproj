@@ -22,6 +22,9 @@
 		BFA5B9BA2DD7D43700C4868C /* MockBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B92DD7D43700C4868C /* MockBackendManager.swift */; };
 		BFA5B9BC2DD7D74000C4868C /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9BB2DD7D74000C4868C /* Create.swift */; };
 		BFA5B9BE2DD7D86D00C4868C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9BD2DD7D86D00C4868C /* Settings.swift */; };
+		BFA5B9C02DD7D9F400C4868C /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9BF2DD7D9F400C4868C /* EventDetailView.swift */; };
+		BFA5B9C22DD7DBC500C4868C /* TabBarVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9C12DD7DBC500C4868C /* TabBarVisibility.swift */; };
+		BFA5B9C52DD7DE4D00C4868C /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		BFA5B9B92DD7D43700C4868C /* MockBackendManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBackendManager.swift; sourceTree = "<group>"; };
 		BFA5B9BB2DD7D74000C4868C /* Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create.swift; sourceTree = "<group>"; };
 		BFA5B9BD2DD7D86D00C4868C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		BFA5B9BF2DD7D9F400C4868C /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		BFA5B9C12DD7DBC500C4868C /* TabBarVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVisibility.swift; sourceTree = "<group>"; };
+		BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,11 +154,14 @@
 		BFA5B9A82DD7865A00C4868C /* views */ = {
 			isa = PBXGroup;
 			children = (
+				BFA5B9C32DD7DE4400C4868C /* Feed */,
 				BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */,
 				BFA5B9A92DD7866200C4868C /* login */,
 				BFA5B9B42DD791F500C4868C /* RootView.swift */,
 				BFA5B9BB2DD7D74000C4868C /* Create.swift */,
 				BFA5B9BD2DD7D86D00C4868C /* Settings.swift */,
+				BFA5B9BF2DD7D9F400C4868C /* EventDetailView.swift */,
+				BFA5B9C12DD7DBC500C4868C /* TabBarVisibility.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -189,6 +198,14 @@
 				BFA5B9B92DD7D43700C4868C /* MockBackendManager.swift */,
 			);
 			path = backend;
+			sourceTree = "<group>";
+		};
+		BFA5B9C32DD7DE4400C4868C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +347,9 @@
 				BFA5B9B72DD7D2C300C4868C /* BackendManager.swift in Sources */,
 				BF1B0E6F2DCE1C3000E19C76 /* partycamApp.swift in Sources */,
 				BFA5B9BA2DD7D43700C4868C /* MockBackendManager.swift in Sources */,
+				BFA5B9C22DD7DBC500C4868C /* TabBarVisibility.swift in Sources */,
+				BFA5B9C52DD7DE4D00C4868C /* FeedView.swift in Sources */,
+				BFA5B9C02DD7D9F400C4868C /* EventDetailView.swift in Sources */,
 				BFA5B9B32DD78A9D00C4868C /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

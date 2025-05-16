@@ -79,49 +79,58 @@ struct User: Decodable {
 }
 
 protocol BackendManager {
-    func fetchEvents(completion: @escaping (Result<[Event], Error>) -> Void)
-    
+    func fetchEvents() async throws -> [Event]
+    func fetchEvent(id: Int) async throws -> Event
 }
 
 class LiveBackendManager: BackendManager {
-    func fetchEvents(completion: @escaping (Result<[Event], Error>) -> Void) {
+    func fetchEvents() async throws -> [Event] {
         guard let url = URL(string: "\(backendUrl)/api/event/me") else {
-            completion(.failure(URLError(.badURL)))
-            return
+            throw URLError(.badURL)
         }
 
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("❌ Network error: \(error.localizedDescription)")
-                    completion(.failure(error))
-                    return
-                }
+        let (data, response) = try await URLSession.shared.data(from: url)
 
-                if let httpResponse = response as? HTTPURLResponse {
-                    print("📡 Response Status Code: \(httpResponse.statusCode)")
-                }
+        if let httpResponse = response as? HTTPURLResponse {
+            print("📡 Response Status Code: \(httpResponse.statusCode)")
+        }
 
-                guard let data = data else {
-                    print("⚠️ No data received from server.")
-                    completion(.failure(URLError(.badServerResponse)))
-                    return
-                }
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("📦 Raw JSON Response:\n\(jsonString)")
+        }
 
-                // Optional: print the raw JSON string for debugging
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("📦 Raw JSON Response:\n\(jsonString)")
-                }
+        do {
+            let decoded = try JSONDecoder().decode([Event].self, from: data)
+            print("✅ Successfully decoded \(decoded.count) event(s).")
+            return decoded
+        } catch {
+            print("🧨 JSON Decoding error: \(error)")
+            throw error
+        }
+    }
 
-                do {
-                    let decoded = try JSONDecoder().decode([Event].self, from: data)
-                    print("✅ Successfully decoded \(decoded.count) event(s).")
-                    completion(.success(decoded))
-                } catch {
-                    print("🧨 JSON Decoding error: \(error)")
-                    completion(.failure(error))
-                }
-            }
-        }.resume()
+    func fetchEvent(id: Int) async throws -> Event {
+        guard let url = URL(string: "\(backendUrl)/api/event/\(id)") else {
+            throw URLError(.badURL)
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        if let httpResponse = response as? HTTPURLResponse {
+            print("📡 Response Status Code: \(httpResponse.statusCode)")
+        }
+
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("📦 Raw JSON Response:\n\(jsonString)")
+        }
+
+        do {
+            let decoded = try JSONDecoder().decode(Event.self, from: data)
+            print("✅ Successfully decoded event with id \(id).")
+            return decoded
+        } catch {
+            print("🧨 JSON Decoding error: \(error)")
+            throw error
+        }
     }
 }

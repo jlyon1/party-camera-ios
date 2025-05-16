@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 
+
 struct CardView: View {
     @Environment(\.colorScheme) var colorScheme
 
@@ -29,13 +30,13 @@ struct CardView: View {
                 case .empty:
                     ProgressView()
                         .frame(height: 220)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 280)
                 case .success(let image):
                     image
                         .resizable()
                         .scaledToFill()        // fills entire frame, may overflow
                         .frame(height: 260)    // fixed height for image area
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 280)
                         .clipped()             // crop overflow
                 case .failure:
                     Image(systemName: "photo")
@@ -43,7 +44,7 @@ struct CardView: View {
                         .scaledToFit()
                         .foregroundColor(.gray)
                         .frame(height: 220)
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: 280)
                 @unknown default:
                     EmptyView()
                 }
@@ -82,15 +83,17 @@ struct Gallery: View {
                         Text("Error: \(errorMessage)")
                             .foregroundColor(.red)
                     }
-
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(events) { event in
-                                CardView(
-                                    imageUrl: event.imageURL,
-                                    title: event.name,
-                                    subtitle: event.startTimeFormatted
-                                )
+                                NavigationLink(destination: EventDetailView(event: event, backend: backend)) {
+                                    CardView(
+                                        imageUrl: event.imageURL,
+                                        title: event.name,
+                                        subtitle: event.startTimeFormatted
+                                    )
+                                }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(.vertical)
@@ -100,19 +103,17 @@ struct Gallery: View {
             }
             .navigationTitle("Your Events") // stays at the top
         }
-        .onAppear {
-            fetchEvents()
+        .task {
+            await fetchEvents()
         }
     }
 
-    func fetchEvents() {
-        backend.fetchEvents { result in
-            switch result {
-            case .success(let loadedEvents):
-                events = loadedEvents
-            case .failure(let error):
-                errorMessage = error.localizedDescription
-            }
+    func fetchEvents() async {
+        do {
+            let loadedEvents = try await backend.fetchEvents()
+            events = loadedEvents
+        } catch {
+            errorMessage = error.localizedDescription
         }
     }
 }
