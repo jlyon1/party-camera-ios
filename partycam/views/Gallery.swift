@@ -1,4 +1,5 @@
 import Foundation
+import NukeUI
 import SwiftUI
 
 
@@ -25,28 +26,14 @@ struct CardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            AsyncImage(url: imageUrl) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .frame(height: 200)
-                        .frame(maxWidth: 220)
-                case .success(let image):
+            LazyImage(url: imageUrl) { state in
+                if let image = state.image {
                     image
                         .resizable()
                         .scaledToFill()        // fills entire frame, may overflow
                         .frame(height: 200)    // fixed height for image area
                         .frame(maxWidth: 220)
                         .clipped()             // crop overflow
-                case .failure:
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.gray)
-                        .frame(height: 200)
-                        .frame(maxWidth: 220)
-                @unknown default:
-                    EmptyView()
                 }
             }
             cardText
@@ -68,9 +55,10 @@ struct Gallery: View {
     
     @State private var events: [Event] = []
     @State private var errorMessage: String?
+    @State private var path = NavigationPath()
 
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Click to view")
@@ -85,7 +73,9 @@ struct Gallery: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(events) { event in
-                                NavigationLink(destination: EventDetailView(event: event, backend: backend)) {
+                                Button {
+                                    path.append(event)
+                                } label: {
                                     CardView(
                                         imageUrl: event.imageURL,
                                         title: event.name,
@@ -101,6 +91,9 @@ struct Gallery: View {
                 .padding()
             }
             .navigationTitle("Your Events")
+            .navigationDestination(for: Event.self) { event in
+                FeedView(eventId: event.id, backendManager: backend, name: event.name)
+            }
             .refreshable {
                 await fetchEvents()
             }
@@ -109,6 +102,7 @@ struct Gallery: View {
             await fetchEvents()
         }
     }
+
 
     func fetchEvents() async {
         do {

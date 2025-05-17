@@ -7,6 +7,20 @@
 
 import Foundation   
 
+struct ImageAsset: Decodable, Identifiable {
+    let id: String
+    let size: String
+    let width: Int
+    let height: Int
+    let url: String
+}
+
+struct ImageWithAssets: Decodable, Identifiable {
+    let id: String
+    let url: String
+    let assets: [ImageAsset]
+}
+
 struct EventFeedItem: Decodable, Identifiable {
     var id: String
     let ownerId: String
@@ -39,7 +53,29 @@ struct EventImage: Decodable, Identifiable {
     let assets: [EventImageAsset]
 }
 
-struct Event: Decodable, Identifiable {
+struct Event: Decodable, Identifiable, Hashable, Equatable {
+    // TODO: These are incomplete
+    static func == (lhs: Event, rhs: Event) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.description == rhs.description &&
+        lhs.start == rhs.start &&
+        lhs.end == rhs.end &&
+        lhs.ownerId == rhs.ownerId &&
+        lhs.image == rhs.image &&
+        lhs.eventImage?.id == rhs.eventImage?.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+        hasher.combine(description)
+        hasher.combine(start)
+        hasher.combine(end)
+        hasher.combine(ownerId)
+        hasher.combine(image)
+    }
+    
     let id: Int
     let name: String
     let description: String
@@ -98,9 +134,37 @@ protocol BackendManager {
     func fetchEvents() async throws -> [Event]
     func fetchEvent(id: Int) async throws -> Event
     func fetchEventFeed(id: Int) async throws -> EventFeed
+    func fetchImageAssets(id: String) async throws -> ImageWithAssets
 }
 
 class LiveBackendManager: BackendManager {
+    func fetchImageAssets(id: String) async throws -> ImageWithAssets {
+        guard let url = URL(string: "\(backendUrl)/api/image/\(id)/assets") else{
+            throw URLError(.badURL)
+        }
+        
+        print("Grabbing image assets for id \(id)")
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            print("fetchImageAssets \(id): Status Code \(httpResponse.statusCode)")
+        }
+        
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("fetchImageAssets \(id): Raw JSON String \(jsonString)")
+        }
+        
+        do {
+            let decoded = try JSONDecoder().decode(ImageWithAssets.self, from: data)
+            print("✅ Successfully decoded \(decoded.assets) assets(s).")
+            return decoded
+        } catch {
+            print("🧨 JSON Decoding error: \(error)")
+            throw error
+        }
+    }
+    
     func fetchEvents() async throws -> [Event] {
         guard let url = URL(string: "\(backendUrl)/api/event/me") else {
             throw URLError(.badURL)

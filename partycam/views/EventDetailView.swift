@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 
+// TODO UNUSED
 struct EventDetailView: View {
     let event: Event
     let backend: BackendManager
@@ -11,24 +12,11 @@ struct EventDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            FeedView(eventId: event.id, backendManager: backend)
+            
             
         }
         .navigationTitle(event.name)
         .hideTabBar()
-        .task {
-            await loadEvent()
-        }
     }
 
-    func loadEvent() async {
-        isLoading = true
-        fetchError = nil
-        do {
-            fetchedEvent = try await backend.fetchEvent(id: event.id)
-        } catch {
-            fetchError = error.localizedDescription
-        }
-        isLoading = false
-    }
 }

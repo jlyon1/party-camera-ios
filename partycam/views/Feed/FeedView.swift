@@ -1,5 +1,7 @@
 import Foundation
+import NukeUI
 import SwiftUI
+
 
 struct FeedView: View {
     @State private var feed: EventFeed?
@@ -9,11 +11,14 @@ struct FeedView: View {
 
     let eventId: Int
     let backendManager: BackendManager
+    let name: String
         
     let columns = [
         GridItem(.flexible()),
+        GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    let imageSize: CGFloat = 150 // Adjust as needed for your design
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -32,28 +37,43 @@ struct FeedView: View {
                             .foregroundColor(.gray)
                             .padding([.horizontal, .bottom])
 
-                        LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(feed.feedItems, id: \.id) { item in
-                                AsyncImage(url: URL(string: item.presignedUrl)) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                } placeholder: {
-                                    ProgressView()
+                        GeometryReader { geometry in
+                            let spacing: CGFloat = 2
+                            let columnsCount = columns.count
+                            let totalSpacing = spacing * CGFloat(columnsCount - 1)
+                            let imageSize = (geometry.size.width - totalSpacing - 32) / CGFloat(columnsCount) // 32 accounts for .horizontal padding
+
+                            LazyVGrid(columns: columns, spacing: spacing) {
+                                ForEach(feed.feedItems, id: \.id) { item in
+                                    NavigationLink(destination: GalleryImageView(imageId: item.id, backend: backendManager)) {
+                                        LazyImage(url: URL(string: item.presignedUrl)){ state in
+                                            if let image = state.image {
+                                                image
+                                                    .resizable()
+                                                    .scaledToFill()
+                                                    .frame(width: imageSize, height: imageSize)
+                                                    .clipped()
+                                            }
+                                        }
+
+                                    }
+                                    
                                 }
-                                .frame(height: 150)
-                                .clipped()
-                                .cornerRadius(8)
                             }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
+                        .frame(minHeight: 0, maxHeight: .infinity) // Let GeometryReader size naturally
                     }
                 }
             }
 
             // Floating "+" button
             Button(action: {
-                isShowingCamera = true
+                if let url = URL(string: "\(backendUrl)/user/\(eventId)"), UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+                
+//                isShowingCamera = true
             }) {
                 Image(systemName: "plus")
                     .font(.system(size: 24))
@@ -64,21 +84,25 @@ struct FeedView: View {
                     .shadow(radius: 4)
                     .padding()
             }
-            .accessibilityLabel("Add photo or video")
+//            .accessibilityLabel("Add photo or video")
+            .navigationTitle(name)
+            .hideTabBar()
         }
-        .onAppear {
-            Task {
-                do {
+        .task {
+            
+            do {
+                if feed == nil {
                     self.feed = try await backendManager.fetchEventFeed(id: eventId)
                     self.isLoading = false
-                } catch {
-                    self.errorMessage = "\(error)"
-                    self.isLoading = false
                 }
+            } catch {
+                self.errorMessage = "\(error)"
+                self.isLoading = false
             }
+            
         }
-        .sheet(isPresented: $isShowingCamera) {
-//            CameraView() // Replace with your camera view implementation
-        }
+//        .sheet(isPresented: $isShowingCamera) {
+////            CameraView() // Replace with your camera view implementation
+//        }
     }
 }
