@@ -25,6 +25,7 @@
 		BFA5B9C02DD7D9F400C4868C /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9BF2DD7D9F400C4868C /* EventDetailView.swift */; };
 		BFA5B9C22DD7DBC500C4868C /* TabBarVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9C12DD7DBC500C4868C /* TabBarVisibility.swift */; };
 		BFA5B9C52DD7DE4D00C4868C /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */; };
+		BFA5B9C72DD8C7DB00C4868C /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9C62DD8C7DB00C4868C /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		BFA5B9BF2DD7D9F400C4868C /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		BFA5B9C12DD7DBC500C4868C /* TabBarVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVisibility.swift; sourceTree = "<group>"; };
 		BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		BFA5B9C62DD8C7DB00C4868C /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */,
+				BFA5B9C62DD8C7DB00C4868C /* CameraView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFA5B9BC2DD7D74000C4868C /* Create.swift in Sources */,
+				BFA5B9C72DD8C7DB00C4868C /* CameraView.swift in Sources */,
 				BFA5B9B52DD791F500C4868C /* RootView.swift in Sources */,
 				BF1B0E712DCE1C3000E19C76 /* ContentView.swift in Sources */,
 				BFA5B9AD2DD7885600C4868C /* LoginView.swift in Sources */,

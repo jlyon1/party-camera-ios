@@ -11,7 +11,7 @@ struct EventDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            FeedView()
+            FeedView(eventId: event.id, backendManager: backend)
             
         }
         .navigationTitle(event.name)

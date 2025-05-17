@@ -5,10 +5,25 @@
 //  Created by Joey Lyon on 5/16/25.
 //
 
-import Foundation
+import Foundation   
+
+struct EventFeedItem: Decodable, Identifiable {
+    var id: String
+    let ownerId: String
+    let ownerName: String
+    let size: String
+    let presignedUrl: String
+}
+
+struct EventFeed: Decodable {
+    let id: Int
+    let name: String
+    let description: String
+    let feedItems: [EventFeedItem]
+}
 
 
-struct EventImageAsset: Decodable {
+struct EventImageAsset: Decodable, Identifiable {
     let id: String
     let size: String
     let width: Int
@@ -17,7 +32,7 @@ struct EventImageAsset: Decodable {
     let presignedUrl: String
 }
 
-struct EventImage: Decodable {
+struct EventImage: Decodable, Identifiable {
     let id: String
     let url: String
     let uploadDate: String
@@ -62,7 +77,8 @@ struct Event: Decodable, Identifiable {
     }
 
     var imageURL: URL {
-        if let assetUrl = eventImage?.assets.first?.url, let url = URL(string: assetUrl) {
+        if let asset = eventImage?.assets.first(where: { $0.size == "thumbnail" }),
+           let url = URL(string: asset.url) {
             return url
         } else {
             return URL(string: "https://placekitten.com/200/200")!
@@ -81,6 +97,7 @@ struct User: Decodable {
 protocol BackendManager {
     func fetchEvents() async throws -> [Event]
     func fetchEvent(id: Int) async throws -> Event
+    func fetchEventFeed(id: Int) async throws -> EventFeed
 }
 
 class LiveBackendManager: BackendManager {
@@ -127,6 +144,31 @@ class LiveBackendManager: BackendManager {
         do {
             let decoded = try JSONDecoder().decode(Event.self, from: data)
             print("✅ Successfully decoded event with id \(id).")
+            return decoded
+        } catch {
+            print("🧨 JSON Decoding error: \(error)")
+            throw error
+        }
+    }
+    
+    func fetchEventFeed(id: Int) async throws -> EventFeed {
+        guard let url = URL(string: "\(backendUrl)/api/event/\(id)/feed") else {
+            throw URLError(.badURL)
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        if let httpResponse = response as? HTTPURLResponse {
+            print("📡 Response Status Code: \(httpResponse.statusCode)")
+        }
+
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("📦 Raw JSON Response:\n\(jsonString)")
+        }
+
+        do {
+            let decoded = try JSONDecoder().decode(EventFeed.self, from: data)
+            print("✅ Successfully decoded event feed for event \(id).")
             return decoded
         } catch {
             print("🧨 JSON Decoding error: \(error)")

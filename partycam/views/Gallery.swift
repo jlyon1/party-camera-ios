@@ -29,22 +29,22 @@ struct CardView: View {
                 switch phase {
                 case .empty:
                     ProgressView()
-                        .frame(height: 220)
-                        .frame(maxWidth: 280)
+                        .frame(height: 200)
+                        .frame(maxWidth: 220)
                 case .success(let image):
                     image
                         .resizable()
                         .scaledToFill()        // fills entire frame, may overflow
-                        .frame(height: 260)    // fixed height for image area
-                        .frame(maxWidth: 280)
+                        .frame(height: 200)    // fixed height for image area
+                        .frame(maxWidth: 220)
                         .clipped()             // crop overflow
                 case .failure:
                     Image(systemName: "photo")
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.gray)
-                        .frame(height: 220)
-                        .frame(maxWidth: 280)
+                        .frame(height: 200)
+                        .frame(maxWidth: 220)
                 @unknown default:
                     EmptyView()
                 }
@@ -53,7 +53,7 @@ struct CardView: View {
                 .padding(.horizontal, 10)
                 .padding(.top, 8)
         }
-        .frame(width: 280, height: 320)      // fixed size card
+        .frame(width: 220, height: 250)      // fixed size card
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 24))
         .shadow(
@@ -62,7 +62,6 @@ struct CardView: View {
         )
     }
 }
-
 
 struct Gallery: View {
     let backend: BackendManager
@@ -74,7 +73,6 @@ struct Gallery: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    // Subtitle below the title
                     Text("Click to view")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -83,6 +81,7 @@ struct Gallery: View {
                         Text("Error: \(errorMessage)")
                             .foregroundColor(.red)
                     }
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
                             ForEach(events) { event in
@@ -101,7 +100,10 @@ struct Gallery: View {
                 }
                 .padding()
             }
-            .navigationTitle("Your Events") // stays at the top
+            .navigationTitle("Your Events")
+            .refreshable {
+                await fetchEvents()
+            }
         }
         .task {
             await fetchEvents()

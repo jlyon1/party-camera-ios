@@ -44,4 +44,21 @@ class SessionManager: ObservableObject {
             isLoggedIn = false
         }
     }
+    
+    func logout() {
+        // Remove all cookies
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            for cookie in cookies {
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+            }
+        }
+
+        // Optional: Clear URL cache and storage as extra protection
+        URLCache.shared.removeAllCachedResponses()
+        
+        // Set state to logged out
+        DispatchQueue.main.async {
+            self.isLoggedIn = false
+        }
+    }
 }
