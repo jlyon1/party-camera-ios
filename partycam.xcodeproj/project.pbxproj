@@ -18,6 +18,7 @@
 		BF228B862DD91A800020C3EF /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228B852DD91A800020C3EF /* ViewfinderView.swift */; };
 		BF228B882DD91ACA0020C3EF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228B872DD91ACA0020C3EF /* DataModel.swift */; };
 		BF228B922DD91B270020C3EF /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228B912DD91B270020C3EF /* PhotoAsset.swift */; };
+		BF228BD02DDA5AFB0020C3EF /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228BCF2DDA5AF70020C3EF /* CameraController.swift */; };
 		BFA5B9AD2DD7885600C4868C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9AC2DD7885600C4868C /* LoginView.swift */; };
 		BFA5B9AF2DD78A4E00C4868C /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */; };
 		BFA5B9B32DD78A9D00C4868C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */; };
@@ -69,6 +70,7 @@
 		BF228B852DD91A800020C3EF /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		BF228B872DD91ACA0020C3EF /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		BF228B912DD91B270020C3EF /* PhotoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAsset.swift; sourceTree = "<group>"; };
+		BF228BCF2DDA5AF70020C3EF /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		BFA5B9AC2DD7885600C4868C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -191,6 +193,14 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
+		BF228BCE2DDA5AEF0020C3EF /* rawcamera */ = {
+			isa = PBXGroup;
+			children = (
+				BF228BCF2DDA5AF70020C3EF /* CameraController.swift */,
+			);
+			path = rawcamera;
+			sourceTree = "<group>";
+		};
 		BFA5B9A82DD7865A00C4868C /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +254,7 @@
 		BFA5B9C32DD7DE4400C4868C /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				BF228BCE2DDA5AEF0020C3EF /* rawcamera */,
 				BF228B842DD91A720020C3EF /* Camera */,
 				BFA5B9C42DD7DE4D00C4868C /* FeedView.swift */,
 				BFA5B9C82DD8E46800C4868C /* ImageView.swift */,
@@ -415,6 +426,7 @@
 				BFA5B9B72DD7D2C300C4868C /* BackendManager.swift in Sources */,
 				BF1B0E6F2DCE1C3000E19C76 /* partycamApp.swift in Sources */,
 				BFA5B9BA2DD7D43700C4868C /* MockBackendManager.swift in Sources */,
+				BF228BD02DDA5AFB0020C3EF /* CameraController.swift in Sources */,
 				BFA5B9C22DD7DBC500C4868C /* TabBarVisibility.swift in Sources */,
 				BFA5B9C52DD7DE4D00C4868C /* FeedView.swift in Sources */,
 				BFA5B9C02DD7D9F400C4868C /* EventDetailView.swift in Sources */,
