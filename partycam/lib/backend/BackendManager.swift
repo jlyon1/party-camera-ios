@@ -5,56 +5,12 @@
 //  Created by Joey Lyon on 5/16/25.
 //
 
-import Foundation   
-
-struct ImageAsset: Decodable, Identifiable {
-    let id: String
-    let size: String
-    let width: Int
-    let height: Int
-    let url: String
-}
-
-struct ImageWithAssets: Decodable, Identifiable {
-    let id: String
-    let url: String
-    let assets: [ImageAsset]
-}
-
-struct EventFeedItem: Decodable, Identifiable {
-    var id: String
-    let ownerId: String
-    let ownerName: String
-    let size: String
-    let presignedUrl: String
-}
-
-struct EventFeed: Decodable {
-    let id: Int
-    let name: String
-    let description: String
-    let feedItems: [EventFeedItem]
-}
+import Foundation
 
 
-struct EventImageAsset: Decodable, Identifiable {
-    let id: String
-    let size: String
-    let width: Int
-    let height: Int
-    let url: String
-    let presignedUrl: String
-}
-
-struct EventImage: Decodable, Identifiable {
-    let id: String
-    let url: String
-    let uploadDate: String
-    let assets: [EventImageAsset]
-}
 
 struct Event: Decodable, Identifiable, Hashable, Equatable {
-    // TODO: These are incomplete
+    
     static func == (lhs: Event, rhs: Event) -> Bool {
         lhs.id == rhs.id &&
         lhs.name == rhs.name &&
@@ -135,6 +91,7 @@ protocol BackendManager {
     func fetchEvent(id: Int) async throws -> Event
     func fetchEventFeed(id: Int) async throws -> EventFeed
     func fetchImageAssets(id: String) async throws -> ImageWithAssets
+    func fetchPresignedUpload(contentType: String, eventId: Int) async throws -> PresignedUpload
 }
 
 class LiveBackendManager: BackendManager {
@@ -239,4 +196,38 @@ class LiveBackendManager: BackendManager {
             throw error
         }
     }
+    
+    func fetchPresignedUpload(contentType: String, eventId: Int) async throws -> PresignedUpload {
+        var components = URLComponents(string: "\(backendUrl)/api/presigned")!
+        components.queryItems = [
+            URLQueryItem(name: "contentType", value: contentType),
+            URLQueryItem(name: "eventId", value: "\(eventId)")
+        ]
+
+        guard let url = components.url else {
+            throw URLError(.badURL)
+        }
+
+        print("Fetching presigned URL with contentType: \(contentType), eventId: \(eventId)")
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        if let httpResponse = response as? HTTPURLResponse {
+            print("📡 fetchPresignedUpload Response Status Code: \(httpResponse.statusCode)")
+        }
+
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("📦 fetchPresignedUpload Raw JSON Response:\n\(jsonString)")
+        }
+
+        do {
+            let decoded = try JSONDecoder().decode(PresignedUpload.self, from: data)
+            print("✅ Successfully fetched presigned upload URL.")
+            return decoded
+        } catch {
+            print("🧨 JSON Decoding error: \(error)")
+            throw error
+        }
+    }
+
 }

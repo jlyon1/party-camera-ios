@@ -53,9 +53,10 @@ struct CardView: View {
 struct Gallery: View {
     let backend: BackendManager
     
-    @State private var events: [Event] = []
     @State private var errorMessage: String?
     @State private var path = NavigationPath()
+    
+    @EnvironmentObject var galleryAndFeedDataModel: GalleryAndFeedDataModel
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -72,7 +73,7 @@ struct Gallery: View {
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 16) {
-                            ForEach(events) { event in
+                            ForEach(galleryAndFeedDataModel.events) { event in
                                 Button {
                                     path.append(event)
                                 } label: {
@@ -92,7 +93,8 @@ struct Gallery: View {
             }
             .navigationTitle("Your Events")
             .navigationDestination(for: Event.self) { event in
-                FeedView(eventId: event.id, backendManager: backend, name: event.name)
+                // TODO: This constructor is a mess
+                FeedView(model: DataModel(backend: backend, eventId: event.id), eventId: event.id, backendManager: backend, name: event.name).environmentObject(galleryAndFeedDataModel)
             }
             .refreshable {
                 await fetchEvents()
@@ -100,14 +102,21 @@ struct Gallery: View {
         }
         .task {
             await fetchEvents()
+            for event in galleryAndFeedDataModel.events {
+                do {
+                    try await galleryAndFeedDataModel.fetchEventFeed(id: event.id)
+                }catch {
+                    print("Error prefetching feed for \(event.id): \(error.localizedDescription)")
+                }
+
+            }
         }
     }
 
 
     func fetchEvents() async {
         do {
-            let loadedEvents = try await backend.fetchEvents()
-            events = loadedEvents
+            try await galleryAndFeedDataModel.fetchEvents()
         } catch {
             errorMessage = error.localizedDescription
         }

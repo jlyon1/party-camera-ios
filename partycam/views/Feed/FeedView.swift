@@ -4,11 +4,25 @@ import SwiftUI
 
 
 struct FeedView: View {
-    @State private var feed: EventFeed?
     @State private var isLoading = true
     @State private var errorMessage: String?
     @State private var isShowingCamera = false  // New state for camera view
+    @StateObject private var model: DataModel
+    @EnvironmentObject private var galleryAndFeedDataModel: GalleryAndFeedDataModel
+    
+    // get the feed from galleryAndFeedDataModel
+    private var feed: EventFeed? {
+        galleryAndFeedDataModel.eventFeedsDict[eventId]
+    }
+    
+    init(model: DataModel, eventId: Int, backendManager: BackendManager, name: String) {
+        _model = StateObject(wrappedValue: model) // <-- use underscore for property wrapper
+        self.eventId = eventId
+        self.backendManager = backendManager
+        self.name = name
+    }
 
+    
     let eventId: Int
     let backendManager: BackendManager
     let name: String
@@ -21,8 +35,17 @@ struct FeedView: View {
     let imageSize: CGFloat = 150 // Adjust as needed for your design
 
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
+        let spacing: CGFloat = 2
+        let columnsCount = columns.count
+        let totalSpacing = spacing * CGFloat(columnsCount - 1)
+        // Calculate image size based on screen width minus horizontal padding (32)
+        let screenWidth = UIScreen.main.bounds.width
+        let imageSize = (screenWidth - totalSpacing - 32) / CGFloat(columnsCount)
+        
+        return ZStack(alignment: .bottomTrailing) {
             ScrollView {
+                Text("ID \(eventId): \(name)")
+                Text("Length \(feed?.feedItems.count ?? 0)")
                 if isLoading {
                     ProgressView("Loading Feed...")
                         .padding()
@@ -37,43 +60,31 @@ struct FeedView: View {
                             .foregroundColor(.gray)
                             .padding([.horizontal, .bottom])
 
-                        GeometryReader { geometry in
-                            let spacing: CGFloat = 2
-                            let columnsCount = columns.count
-                            let totalSpacing = spacing * CGFloat(columnsCount - 1)
-                            let imageSize = (geometry.size.width - totalSpacing - 32) / CGFloat(columnsCount) // 32 accounts for .horizontal padding
-
-                            LazyVGrid(columns: columns, spacing: spacing) {
-                                ForEach(feed.feedItems, id: \.id) { item in
-                                    NavigationLink(destination: GalleryImageView(imageId: item.id, backend: backendManager)) {
-                                        LazyImage(url: URL(string: item.presignedUrl)){ state in
-                                            if let image = state.image {
-                                                image
-                                                    .resizable()
-                                                    .scaledToFill()
-                                                    .frame(width: imageSize, height: imageSize)
-                                                    .clipped()
-                                            }
+                        LazyVGrid(columns: columns, spacing: spacing) {
+                            ForEach(feed.feedItems, id: \.id) { item in
+                                NavigationLink(destination: GalleryImageView(imageId: item.id, backend: backendManager)) {
+                                    LazyImage(url: URL(string: item.presignedUrl)) { state in
+                                        if let image = state.image {
+                                            image
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: imageSize, height: imageSize)
+                                                .clipped()
+                                        } else {
+                                            Color.gray
+                                                .frame(width: imageSize, height: imageSize)
                                         }
-
                                     }
-                                    
                                 }
                             }
-                            .padding(.horizontal)
                         }
-                        .frame(minHeight: 0, maxHeight: .infinity) // Let GeometryReader size naturally
+                        .padding(.horizontal)
                     }
                 }
             }
-
-            // Floating "+" button
+            
             Button(action: {
-                if let url = URL(string: "\(backendUrl)/user/\(eventId)"), UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
-                }
-                
-//                isShowingCamera = true
+                isShowingCamera = true
             }) {
                 Image(systemName: "plus")
                     .font(.system(size: 24))
@@ -84,25 +95,57 @@ struct FeedView: View {
                     .shadow(radius: 4)
                     .padding()
             }
-//            .accessibilityLabel("Add photo or video")
             .navigationTitle(name)
             .hideTabBar()
         }
-        .task {
-            
-            do {
-                if feed == nil {
-                    self.feed = try await backendManager.fetchEventFeed(id: eventId)
-                    self.isLoading = false
-                }
+        .refreshable {
+            try? await Task.sleep(nanoseconds: 200_000_000) // 0.2 sec debounce
+            do{
+                try await galleryAndFeedDataModel.fetchEventFeed(id: eventId, overwrite: true)
+                isLoading = false
             } catch {
-                self.errorMessage = "\(error)"
-                self.isLoading = false
+                errorMessage = error.localizedDescription // TODO needs to be real error handling
             }
-            
         }
-//        .sheet(isPresented: $isShowingCamera) {
-////            CameraView() // Replace with your camera view implementation
+        .task {
+            do{
+                try await galleryAndFeedDataModel.fetchEventFeed(id: eventId)
+                isLoading = false
+            } catch {
+                errorMessage = error.localizedDescription // TODO needs to be real error handling
+            }
+        }
+        .sheet(isPresented: $isShowingCamera) {
+            CameraView(backend: backendManager, model: model)
+        }
+    }
+    
+    func refreshFeed(force: Bool) async {
+//        do {
+//            if force || feed == nil {
+//                // Avoid changing feed here before the await call
+//                let newFeed = try await backendManager.fetchEventFeed(id: eventId)
+//                // Now update state on the main thread after await finishes
+//                await MainActor.run {
+//                    feed = newFeed
+//                    isLoading = false
+//                }
+//            }
+//        } catch {
+//            await MainActor.run {
+//                if let urlError = error as? URLError, urlError.code == .cancelled {
+//                    print("Fetch cancelled - ignoring")
+//                } else {
+//                    errorMessage = "\(error)"
+//                    isLoading = false
+//                }
+//            }
 //        }
+    }
+    func testAsync() async throws -> String {
+        print("HERE")
+        try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second delay
+        print("DONe")
+        return "done"
     }
 }

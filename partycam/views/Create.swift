@@ -22,3 +22,7 @@ struct Create: View {
         }
     }
 }
+
+#Preview {
+    Create(backend: LiveBackendManager())
+}
