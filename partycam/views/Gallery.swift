@@ -44,8 +44,8 @@ struct CardView: View {
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 24))
         .shadow(
-            color: colorScheme == .dark ? Color.white.opacity(0.2) : Color.black.opacity(0.2),
-            radius: 8, x: 0, y: 4
+            color: colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1),
+            radius: 8, x: 0, y: 2
         )
     }
 }
@@ -93,12 +93,17 @@ struct Gallery: View {
             }
             .navigationTitle("Your Events")
             .navigationDestination(for: Event.self) { event in
-                // TODO: This constructor is a mess
-                FeedView(model: DataModel(backend: backend, eventId: event.id), eventId: event.id, backendManager: backend, name: event.name).environmentObject(galleryAndFeedDataModel)
+                let model = DataModel(backend: backend, eventId: event.id, eventName: event.name)
+                CameraWrapper(model: model, backendManager: backend)
+                    .hideTabBar()
             }
             .refreshable {
                 await fetchEvents()
             }
+            .onAppear {
+                TabBarVisibilityManager.shared.isHidden = false
+            }
+            
         }
         .task {
             await fetchEvents()

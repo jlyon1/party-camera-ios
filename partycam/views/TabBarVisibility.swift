@@ -36,15 +36,28 @@ struct HideTabBarModifier: ViewModifier {
             .onAppear {
                 manager.isHidden = true
             }
-            .onDisappear {
+    }
+}
+
+struct ShowTabBarModifier: ViewModifier {
+    @ObservedObject private var manager = TabBarVisibilityManager.shared
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
                 manager.isHidden = false
             }
     }
 }
 
+
 extension View {
     func hideTabBar() -> some View {
         self.modifier(HideTabBarModifier())
+    }
+    
+    func showTabBar() -> some View {
+        self.modifier(ShowTabBarModifier())
     }
 }
 

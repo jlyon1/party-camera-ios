@@ -93,6 +93,43 @@ class GalleryAndFeedDataModel: ObservableObject {
         }
     }
     
+    func createEvent(name: String, description: String, startDate: String, endDate: String) async throws {
+        guard let url = URL(string: "\(backendUrl)/api/event/create") else {
+            throw URLError(.badURL)
+        }
+
+        // Prepare the request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        // Prepare JSON body
+        let bodyDict: [String: String] = [
+            "name": name,
+            "description": description,
+            "startDate": startDate,
+            "endDate": endDate
+        ]
+        request.httpBody = try JSONEncoder().encode(bodyDict)
+
+        // Make the network call
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        if let httpResponse = response as? HTTPURLResponse {
+            print("Response Status Code: \(httpResponse.statusCode)")
+        }
+
+        // Optional: Print the raw JSON response for debugging
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("Raw JSON Response:\n\(jsonString)")
+        }
+
+        // If you want to decode a response, add decoding logic here
+        // For example, if server returns created Event:
+         let createdEvent = try JSONDecoder().decode(Event.self, from: data)
+        print("Created \(createdEvent.id)")
+    }
+    
     func fetchEventFeed(id: Int, overwrite: Bool = false) async throws {
         guard let url = URL(string: "\(backendUrl)/api/event/\(id)/feed") else {
             throw URLError(.badURL)

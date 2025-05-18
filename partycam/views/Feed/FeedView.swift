@@ -7,7 +7,6 @@ struct FeedView: View {
     @State private var isLoading = true
     @State private var errorMessage: String?
     @State private var isShowingCamera = false  // New state for camera view
-    @StateObject private var model: DataModel
     @EnvironmentObject private var galleryAndFeedDataModel: GalleryAndFeedDataModel
     
     // get the feed from galleryAndFeedDataModel
@@ -15,8 +14,7 @@ struct FeedView: View {
         galleryAndFeedDataModel.eventFeedsDict[eventId]
     }
     
-    init(model: DataModel, eventId: Int, backendManager: BackendManager, name: String) {
-        _model = StateObject(wrappedValue: model) // <-- use underscore for property wrapper
+    init(eventId: Int, backendManager: BackendManager, name: String) {
         self.eventId = eventId
         self.backendManager = backendManager
         self.name = name
@@ -46,6 +44,16 @@ struct FeedView: View {
             ScrollView {
                 Text("ID \(eventId): \(name)")
                 Text("Length \(feed?.feedItems.count ?? 0)")
+                Button("Manual Refresh") {
+                    Task {
+                        do{
+                            try await galleryAndFeedDataModel.fetchEventFeed(id: eventId, overwrite: true)
+                            isLoading = false
+                        } catch {
+                            errorMessage = error.localizedDescription // TODO needs to be real error handling
+                        }
+                    }
+                }
                 if isLoading {
                     ProgressView("Loading Feed...")
                         .padding()
@@ -83,30 +91,30 @@ struct FeedView: View {
                 }
             }
             
-            Button(action: {
-                isShowingCamera = true
-            }) {
-                Image(systemName: "plus")
-                    .font(.system(size: 24))
-                    .foregroundColor(.white)
-                    .frame(width: 60, height: 60)
-                    .background(Color.blue)
-                    .clipShape(Circle())
-                    .shadow(radius: 4)
-                    .padding()
-            }
+//            Button(action: {
+//                isShowingCamera = true
+//            }) {
+//                Image(systemName: "plus")
+//                    .font(.system(size: 24))
+//                    .foregroundColor(.white)
+//                    .frame(width: 60, height: 60)
+//                    .background(Color.blue)
+//                    .clipShape(Circle())
+//                    .shadow(radius: 4)
+//                    .padding()
+//            }
             .navigationTitle(name)
             .hideTabBar()
         }
-        .refreshable {
-            try? await Task.sleep(nanoseconds: 200_000_000) // 0.2 sec debounce
-            do{
-                try await galleryAndFeedDataModel.fetchEventFeed(id: eventId, overwrite: true)
-                isLoading = false
-            } catch {
-                errorMessage = error.localizedDescription // TODO needs to be real error handling
-            }
-        }
+//        .refreshable {
+//            try? await Task.sleep(nanoseconds: 400_000_000) // 0.2 sec debounce
+//            do{
+//                try await galleryAndFeedDataModel.fetchEventFeed(id: eventId, overwrite: true)
+//                isLoading = false
+//            } catch {
+//                errorMessage = error.localizedDescription // TODO needs to be real error handling
+//            }
+//        }
         .task {
             do{
                 try await galleryAndFeedDataModel.fetchEventFeed(id: eventId)
@@ -115,9 +123,9 @@ struct FeedView: View {
                 errorMessage = error.localizedDescription // TODO needs to be real error handling
             }
         }
-        .sheet(isPresented: $isShowingCamera) {
-            CameraView(backend: backendManager, model: model)
-        }
+//        .sheet(isPresented: $isShowingCamera) {
+//            CameraView(backend: backendManager, model: model)
+//        }
     }
     
     func refreshFeed(force: Bool) async {
@@ -142,10 +150,5 @@ struct FeedView: View {
 //            }
 //        }
     }
-    func testAsync() async throws -> String {
-        print("HERE")
-        try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second delay
-        print("DONe")
-        return "done"
-    }
+
 }

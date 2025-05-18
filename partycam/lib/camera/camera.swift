@@ -14,7 +14,8 @@ class Camera: NSObject {
     private var photoOutput: AVCapturePhotoOutput?
     private var videoOutput: AVCaptureVideoDataOutput?
     private var sessionQueue: DispatchQueue!
-    
+    private var photoCaptureCompletion: ((UIImage?) -> Void)?
+
     private var allCaptureDevices: [AVCaptureDevice] {
         AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInTrueDepthCamera, .builtInDualCamera, .builtInDualWideCamera, .builtInWideAngleCamera, .builtInDualWideCamera], mediaType: .video, position: .unspecified).devices
     }
@@ -238,6 +239,7 @@ class Camera: NSObject {
     
     func start() async {
         let authorized = await checkAuthorization()
+        logger.info("Started Camera")
         guard authorized else {
             logger.error("Camera access was not authorized.")
             return

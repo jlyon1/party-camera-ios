@@ -18,7 +18,7 @@ struct RootView: View {
         Group {
             if session.isLoggedIn {
                 TabView(){
-                    Create(backend: LiveBackendManager()).tabItem { Image(systemName: "plus") }
+                    Create().environmentObject(galleryAndFeedDataModel).tabItem { Image(systemName: "plus") }
                     Gallery(backend: LiveBackendManager()).environmentObject(galleryAndFeedDataModel).tabItem { Image(systemName: "camera") }
                     Settings(backend: LiveBackendManager()).tabItem { Image(systemName: "gear") }
                 }

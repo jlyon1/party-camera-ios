@@ -10,6 +10,7 @@ final class DataModel: ObservableObject {
     let backend: BackendManager
     let camera = Camera()
     let eventId: Int
+    let eventName: String
 
     @Published var viewfinderImage: Image?
     @Published var thumbnailImage: Image?
@@ -19,9 +20,10 @@ final class DataModel: ObservableObject {
     
     var isPhotosLoaded = false
     
-    init(backend: BackendManager, eventId: Int) {
+    init(backend: BackendManager, eventId: Int, eventName: String) {
         self.backend = backend
         self.eventId = eventId
+        self.eventName = eventName
         Task {
             await handleCameraPreviews()
         }
@@ -34,6 +36,7 @@ final class DataModel: ObservableObject {
     func handleCameraPreviews() async {
 		let context = CIContext(options: [.cacheIntermediates: false,
 										  .name: "handleCameraPreviews"])
+        logger.info("Previews Started")
         let imageStream = camera.previewStream
 			.map { $0.image(ciContext: context) }
 
