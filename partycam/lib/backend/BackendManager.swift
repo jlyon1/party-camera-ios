@@ -67,6 +67,43 @@ struct Event: Decodable, Identifiable, Hashable, Equatable {
             return dateFormatter.string(from: date)
         }
     }
+    
+    var endTimeFormatted: String {
+        guard let endString = end else {
+            return "Ongoing"
+        }
+        
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        
+        guard let endDate = isoFormatter.date(from: endString) ?? ISO8601DateFormatter().date(from: endString) else {
+            return endString
+        }
+        
+        let now = Date()
+        
+        // If endDate is in the past or now, say so
+        if endDate <= now {
+            return "Ended"
+        }
+        
+        let components = Calendar.current.dateComponents([.hour, .minute], from: now, to: endDate)
+        
+        let hours = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        
+        var parts = [String]()
+        if hours > 0 {
+            parts.append("\(hours)h")
+        }
+        if minutes > 0 {
+            parts.append("\(minutes)m")
+        }
+        
+        let timeString = parts.joined(separator: " ")
+        
+        return "\(timeString)"
+    }
 
     var imageURL: URL {
         if let asset = eventImage?.assets.first(where: { $0.size == "thumbnail" }),

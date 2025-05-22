@@ -19,6 +19,7 @@
 		BF228B882DD91ACA0020C3EF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228B872DD91ACA0020C3EF /* DataModel.swift */; };
 		BF228B922DD91B270020C3EF /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228B912DD91B270020C3EF /* PhotoAsset.swift */; };
 		BF228BD02DDA5AFB0020C3EF /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228BCF2DDA5AF70020C3EF /* CameraController.swift */; };
+		BF228BD32DDA70CD0020C3EF /* TextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF228BD22DDA70CA0020C3EF /* TextInput.swift */; };
 		BFA5B9AD2DD7885600C4868C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9AC2DD7885600C4868C /* LoginView.swift */; };
 		BFA5B9AF2DD78A4E00C4868C /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */; };
 		BFA5B9B32DD78A9D00C4868C /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */; };
@@ -71,6 +72,7 @@
 		BF228B872DD91ACA0020C3EF /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		BF228B912DD91B270020C3EF /* PhotoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAsset.swift; sourceTree = "<group>"; };
 		BF228BCF2DDA5AF70020C3EF /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		BF228BD22DDA70CA0020C3EF /* TextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput.swift; sourceTree = "<group>"; };
 		BFA5B9AC2DD7885600C4868C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BFA5B9AE2DD78A4E00C4868C /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		BFA5B9B22DD78A9D00C4868C /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		BF1B0E6D2DCE1C3000E19C76 /* partycam */ = {
 			isa = PBXGroup;
 			children = (
+				BF228BD12DDA70C50020C3EF /* components */,
 				BFA5B9B02DD78A8900C4868C /* lib */,
 				BFA5B9A82DD7865A00C4868C /* views */,
 				BF1B0E6E2DCE1C3000E19C76 /* partycamApp.swift */,
@@ -199,6 +202,14 @@
 				BF228BCF2DDA5AF70020C3EF /* CameraController.swift */,
 			);
 			path = rawcamera;
+			sourceTree = "<group>";
+		};
+		BF228BD12DDA70C50020C3EF /* components */ = {
+			isa = PBXGroup;
+			children = (
+				BF228BD22DDA70CA0020C3EF /* TextInput.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		BFA5B9A82DD7865A00C4868C /* views */ = {
@@ -432,6 +443,7 @@
 				BFA5B9C02DD7D9F400C4868C /* EventDetailView.swift in Sources */,
 				BFA5B9B32DD78A9D00C4868C /* SessionManager.swift in Sources */,
 				BF228B882DD91ACA0020C3EF /* DataModel.swift in Sources */,
+				BF228BD32DDA70CD0020C3EF /* TextInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

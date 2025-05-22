@@ -8,7 +8,6 @@ import os.log
 
 final class DataModel: ObservableObject {
     let backend: BackendManager
-    let camera = Camera()
     let eventId: Int
     let eventName: String
 
@@ -24,51 +23,38 @@ final class DataModel: ObservableObject {
         self.backend = backend
         self.eventId = eventId
         self.eventName = eventName
-        Task {
-            await handleCameraPreviews()
-        }
-        
-        Task {
-            await handleCameraPhotos()
-        }
+//        Task {
+//            await handleCameraPreviews()
+//        }
+//        
+//        Task {
+//            await handleCameraPhotos()
+//        }
     }
     
-    func handleCameraPreviews() async {
-		let context = CIContext(options: [.cacheIntermediates: false,
-										  .name: "handleCameraPreviews"])
-        logger.info("Previews Started")
-        let imageStream = camera.previewStream
-			.map { $0.image(ciContext: context) }
-
-        for await image in imageStream {
-            Task { @MainActor in
-                viewfinderImage = image
-            }
-        }
-    }
-
-    
-    func handleCameraPhotos() async {
-        let unpackedPhotoStream = camera.photoStream
-            .compactMap { self.unpackPhoto($0) }
-        
-        for await photoData in unpackedPhotoStream {
-            Task { @MainActor in
-                thumbnailImage = photoData.thumbnailImage
-            }
-            enqueuePhotoForUpload(photoData.imageData)
-        }
-    }
-    
+//    func handleCameraPhotos() async {
+//        let unpackedPhotoStream = camera.photoStream
+//            .compactMap { self.unpackPhoto($0) }
+//        
+//        for await photoData in unpackedPhotoStream {
+//            Task { @MainActor in
+//                thumbnailImage = photoData.thumbnailImage
+//            }
+//            enqueuePhotoForUpload(photoData.imageData)
+//        }
+//    }
+//    
     func enqueuePhotoForUpload(_ imageData: Data) {
         uploadQueue.append(imageData)
         tryUploadNext()
     }
     
     func tryUploadNext() {
+        print("Kicking off upload")
         guard !isUploading, !uploadQueue.isEmpty else { return }
         isUploading = true
         let nextPhoto = uploadQueue.removeFirst()
+        print("Uploading new")
 
         Task {
             await uploadPhoto(imageData: nextPhoto)

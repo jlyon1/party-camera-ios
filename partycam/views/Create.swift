@@ -5,27 +5,30 @@ struct Create: View {
     
     @State private var name = ""
     @State private var description = ""
-    @State private var startDate = ""
-    @State private var endDate = ""
+    @State private var startDate = Date()
+    @State private var endDate = Calendar.current.date(byAdding: .hour, value: 8, to: Date()) ?? Date()
     
     @State private var isCreating = false
     @State private var message = ""
+    @State private var hideImages = false
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    TextField("Name", text: $name)
-                        .textFieldStyle(.roundedBorder)
+                    PartyTextInput(text: $name, placeholder: "Name")
                     
                     TextField("Description", text: $description)
                         .textFieldStyle(.roundedBorder)
                     
-                    TextField("Start Date (e.g. 2025-05-18)", text: $startDate)
-                        .textFieldStyle(.roundedBorder)
+                    DatePicker("Start Date", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
+                        .datePickerStyle(.compact)
                     
-                    TextField("End Date (e.g. 2025-05-20)", text: $endDate)
-                        .textFieldStyle(.roundedBorder)
+                    DatePicker("End Date", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
+                        .datePickerStyle(.compact)
+                    
+                    Toggle("Hide images before the event ends", isOn: $hideImages)
+                        .toggleStyle(.switch)
                     
                     if isCreating {
                         ProgressView()
@@ -36,7 +39,7 @@ struct Create: View {
                             await createEvent()
                         }
                     }
-                    .disabled(isCreating || name.isEmpty || description.isEmpty || startDate.isEmpty || endDate.isEmpty)
+                    .disabled(isCreating || name.isEmpty || description.isEmpty)
                     .buttonStyle(.borderedProminent)
                     
                     if !message.isEmpty {
@@ -55,18 +58,22 @@ struct Create: View {
         isCreating = true
         message = ""
         do {
-            // Call your backend manager method via the data model
+            let formatter = ISO8601DateFormatter()
+            let startDateString = formatter.string(from: startDate)
+            let endDateString = formatter.string(from: endDate)
+            
             try await galleryAndFeedDataModel.createEvent(
                 name: name,
                 description: description,
-                startDate: startDate,
-                endDate: endDate
+                startDate: startDateString,
+                endDate: endDateString,
+                blur: hideImages
             )
             message = "Event created successfully!"
             name = ""
             description = ""
-            startDate = ""
-            endDate = ""
+            startDate = Date()
+            endDate = Date()
         } catch {
             message = "Failed to create event: \(error.localizedDescription)"
         }

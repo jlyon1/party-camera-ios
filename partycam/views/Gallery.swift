@@ -2,7 +2,6 @@ import Foundation
 import NukeUI
 import SwiftUI
 
-
 struct CardView: View {
     @Environment(\.colorScheme) var colorScheme
 
@@ -30,32 +29,35 @@ struct CardView: View {
                 if let image = state.image {
                     image
                         .resizable()
-                        .scaledToFill()        // fills entire frame, may overflow
-                        .frame(height: 200)    // fixed height for image area
+                        .scaledToFill()  // fills entire frame, may overflow
+                        .frame(height: 200)  // fixed height for image area
                         .frame(maxWidth: 220)
-                        .clipped()             // crop overflow
+                        .clipped()  // crop overflow
                 }
             }
             cardText
                 .padding(.horizontal, 10)
                 .padding(.top, 8)
         }
-        .frame(width: 220, height: 250)      // fixed size card
+        .frame(width: 220, height: 250)  // fixed size card
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 24))
         .shadow(
-            color: colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1),
-            radius: 8, x: 0, y: 2
+            color: colorScheme == .dark
+                ? Color.white.opacity(0.1) : Color.black.opacity(0.1),
+            radius: 8,
+            x: 0,
+            y: 2
         )
     }
 }
 
 struct Gallery: View {
     let backend: BackendManager
-    
+
     @State private var errorMessage: String?
     @State private var path = NavigationPath()
-    
+
     @EnvironmentObject var galleryAndFeedDataModel: GalleryAndFeedDataModel
 
     var body: some View {
@@ -80,7 +82,7 @@ struct Gallery: View {
                                     CardView(
                                         imageUrl: event.imageURL,
                                         title: event.name,
-                                        subtitle: event.startTimeFormatted
+                                        subtitle: event.endTimeFormatted
                                     )
                                 }
                                 .buttonStyle(PlainButtonStyle())
@@ -93,7 +95,11 @@ struct Gallery: View {
             }
             .navigationTitle("Your Events")
             .navigationDestination(for: Event.self) { event in
-                let model = DataModel(backend: backend, eventId: event.id, eventName: event.name)
+                let model = DataModel(
+                    backend: backend,
+                    eventId: event.id,
+                    eventName: event.name
+                )
                 CameraWrapper(model: model, backendManager: backend)
                     .hideTabBar()
             }
@@ -103,21 +109,24 @@ struct Gallery: View {
             .onAppear {
                 TabBarVisibilityManager.shared.isHidden = false
             }
-            
+
         }
         .task {
             await fetchEvents()
             for event in galleryAndFeedDataModel.events {
                 do {
-                    try await galleryAndFeedDataModel.fetchEventFeed(id: event.id)
-                }catch {
-                    print("Error prefetching feed for \(event.id): \(error.localizedDescription)")
+                    try await galleryAndFeedDataModel.fetchEventFeed(
+                        id: event.id
+                    )
+                } catch {
+                    print(
+                        "Error prefetching feed for \(event.id): \(error.localizedDescription)"
+                    )
                 }
 
             }
         }
     }
-
 
     func fetchEvents() async {
         do {
@@ -127,7 +136,6 @@ struct Gallery: View {
         }
     }
 }
-
 
 #Preview {
     Gallery(backend: LiveBackendManager())

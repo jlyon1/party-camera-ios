@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreImage.CIFilterBuiltins
+
 
 let backendUrl = "https://party-camera-iota.vercel.app";
 
@@ -61,9 +63,35 @@ struct EventImage: Decodable, Identifiable {
     let assets: [EventImageAsset]
 }
 
+struct SessionData: Decodable, Identifiable {
+    let username: String?
+    let userId: String?
+    
+    var id: String {
+        userId ?? UUID().uuidString // fallback if userId is nil
+    }
+    
+}
+
 class GalleryAndFeedDataModel: ObservableObject {
     @Published var events: [Event] = []
     @Published var eventFeedsDict: [Int: EventFeed] = [:]
+    @Published var userId: String?
+    
+    let context = CIContext()
+    let filter = CIFilter.qrCodeGenerator()
+    
+    func generateQRCode(from string: String) -> UIImage {
+        filter.message = Data(string.utf8)
+
+        if let outputImage = filter.outputImage {
+            if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+                return UIImage(cgImage: cgImage)
+            }
+        }
+
+        return UIImage(systemName: "xmark.circle") ?? UIImage()
+    }
     
     func fetchEvents() async throws {
         guard let url = URL(string: "\(backendUrl)/api/event/me") else {
@@ -93,7 +121,7 @@ class GalleryAndFeedDataModel: ObservableObject {
         }
     }
     
-    func createEvent(name: String, description: String, startDate: String, endDate: String) async throws {
+    func createEvent(name: String, description: String, startDate: String, endDate: String, blur: Bool) async throws {
         guard let url = URL(string: "\(backendUrl)/api/event/create") else {
             throw URLError(.badURL)
         }
@@ -108,9 +136,13 @@ class GalleryAndFeedDataModel: ObservableObject {
             "name": name,
             "description": description,
             "startDate": startDate,
-            "endDate": endDate
+            "endDate": endDate,
+            "blur": blur ? "true" : "false"
         ]
+        
         request.httpBody = try JSONEncoder().encode(bodyDict)
+        
+        print("\(request.httpBody?.base64EncodedString())")
 
         // Make the network call
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -159,6 +191,32 @@ class GalleryAndFeedDataModel: ObservableObject {
             await MainActor.run {
                 print("Got event feed for event \(id) has \(decoded.feedItems.count) items")
                 self.eventFeedsDict[id] = decoded
+            }
+        } catch {
+            print("JSON Decoding error: \(error)")
+            throw error
+        }
+    }
+    
+    func fetchSession() async throws {
+        guard let url = URL(string: "\(backendUrl)/api/session") else {
+            throw URLError(.badURL)
+        }
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        if let httpResponse = response as? HTTPURLResponse {
+            print("response Status Code: \(httpResponse.statusCode)")
+        }
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("Raw JSON Response:\n\(jsonString)")
+        }
+        
+        do {
+            let decoded = try JSONDecoder().decode(SessionData.self, from: data)
+
+            await MainActor.run {
+                print("Retrieved session data")
+                self.userId = decoded.userId
             }
         } catch {
             print("JSON Decoding error: \(error)")
